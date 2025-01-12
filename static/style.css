@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Poppins:wght@400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+* {
+  font-family: "Poppins", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #051935;
+}
+
+h1 {
+  margin-top: 0;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 50px;
+  color: #ffffff;
+}
+
+.container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+form {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.file-upload-wrapper {
+  width: 300px;
+  height: 50px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.file-upload-wrapper:hover {
+  background-color: #9ac4fa;
+}
+
+label {
+  padding: 10px 20px;
+  font-size: 18px;
+  color: #051935;
+  cursor: pointer;
+}
+
+.file-name {
+  font-size: 14px;
+  color: #ffffff;
+  margin-top: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  background-color: #28a745;
+  color: #ffffff;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+#video-output img {
+  width: 100%;
+}
+
+.button-container {
+  text-align: center;
+}
+
+#available-slot {
+  margin-top: 20px;
+  font-size: 50px;
+  color: #ffffff;
+}
+
+.available-slot-list {
+  margin-top: 10px;
+  font-size: 50px;
+  color: #ffffff;
+}
