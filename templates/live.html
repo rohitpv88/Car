@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Live Car Parking Slot Detection</title>
+    <link rel="stylesheet" href="static/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Live Car Parking Slot Detection</h1>
+      <br />
+      <br />
+      <div id="video-output">
+        <img src="{{url_for('live',video_path=video_path)}}" />
+      </div>
+      <br />
+      <div id="button-container">
+        <a href="{{url_for('available')}}">
+          <button>Available Slots</button>
+        </a>
+        <a href="/">
+          <button>Home</button>
+        </a>
+        <button onclick="closePage()">Close</button>
+      </div>
+    </div>
+    <script src="static/script.js"></script>
+  </body>
+</html>

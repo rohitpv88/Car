@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Car Parking Slot Detection</title>
+    <link rel="stylesheet" href="static/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Car Parking Slot Detection</h1>
+      <form
+        id="image-form"
+        action="/picker"
+        method="post"
+        enctype="multipart/form-data"
+        onsubmit="return validateFile('image')"
+      >
+        <div class="file-upload-wrapper">
+          <input
+            type="file"
+            name="image"
+            id="image"
+            accept="image/*"
+            onchange="displayFileName('image')"
+          />
+          <label for="image">Upload Image</label>
+        </div>
+        <div class="file-name" id="image-file-name">No File Chosen</div>
+        <button type="submit">Select Parking Slot</button>
+      </form>
+      <form
+        id="video-form"
+        action="/detect"
+        method="post"
+        enctype="multipart/form-data"
+        onsubmit="return validateFile('video')"
+      >
+        <div class="file-upload-wrapper">
+          <input
+            type="file"
+            name="video"
+            id="video"
+            accept="video/*"
+            onchange="displayFileName('video')"
+          />
+          <label for="video">Upload Video</label>
+        </div>
+        <div class="file-name" id="video-file-name">No File Chosen</div>
+        <button type="submit">Detect Parking Slot</button>
+      </form>
+    </div>
+    <script src="static/script.js"></script>
+  </body>
+</html>
