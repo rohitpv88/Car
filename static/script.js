@@ -5,25 +5,35 @@ function displayFileName(inputId) {
   fileNameElement.textContent = fileName;
 }
 
-function validateFile(inputId) {
+function validateImage(inputId) {
   const input = document.getElementById(inputId);
   if (!input.files.length) {
-    alert("Upload a File");
+    alert("Upload an Image");
+    return false;
+  }
+  return true;
+}
+
+function validateVideo(inputId) {
+  const input = document.getElementById(inputId);
+  if (!input.files.length) {
+    alert("Select Parking Slots or Upload a Video");
     return false;
   }
   return true;
 }
 
 function closePage() {
-  fetch("/clear", { method: "POST" }).then((response) => {
+  fetch("/delete", { method: "POST" }).then((response) => {
     if (response.ok) {
       window.location.href = "/";
+      availablePage.close();
     }
   });
 }
 
 function updateAvailableSlot() {
-  fetch("/available_slot")
+  fetch("/get_available_slot")
     .then((response) => response.json())
     .then((data) => {
       const availableSlotDiv = document.getElementById("available-slot");
@@ -41,3 +51,8 @@ function updateAvailableSlot() {
     });
 }
 setInterval(updateAvailableSlot, 10000);
+
+let availablePage = null;
+function openAvailablePage() {
+  availablePage = window.open("/available", "_blank");
+}
