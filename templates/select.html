@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Select Parking Slot</title>
+    <link rel="stylesheet" href="static/style.css" />
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <div id="button-container">
+      <button id="saveSlot">Save Slot</button>
+      <a href="/">
+        <button>Home</button>
+      </a>
+    </div>
+    <script>
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+      const saveSlotButton = document.getElementById('saveSlot');
+      const width = 107;
+      const height = 48;
+      let positions = {{ position|tojson }};
+      let imageUrl = '{{ image_url }}';
+
+      window.onload = async function() {
+        displayImage(imageUrl);
+        drawRectangles();
+      };
+
+      function displayImage(imageUrl) {
+        const img = new Image();
+        img.onload = () => {
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.drawImage(img, 0, 0);
+        };
+        img.src = imageUrl;
+      }
+
+      canvas.addEventListener('mousedown', (event) => {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        if (event.button === 0) {
+          positions.push([x, y]);
+          drawRectangles();
+        } else if (event.button === 2) {
+          positions = positions.filter(([px, py]) => !(x > px && x < px + width && y > py && y < py + height));
+          drawRectangles();
+        }
+      });
+
+      canvas.addEventListener('contextmenu', (event) => event.preventDefault());
+
+      function drawRectangles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const img = new Image();
+        img.onload = () => {
+          ctx.drawImage(img, 0, 0);
+          positions.forEach(([x, y]) => {
+            ctx.strokeStyle = 'magenta';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(x, y, width, height);
+          });
+        };
+        img.src = imageUrl;
+      }
+
+      saveSlotButton.addEventListener('click', async () => {
+        try {
+          const response = await fetch('/save_slot', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ positions }),
+          });
+          const result = await response.json();
+          if (response.ok) {
+            alert("Saved Slot");
+          } else {
+            alert(result.error || 'Failed to save slots');
+          }
+        } catch (error) {
+          alert('Error saving slots: ' + error.message);
+        }
+      });
+    </script>
+  </body>
+</html>
