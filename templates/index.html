@@ -11,10 +11,10 @@
       <h1>Car Parking Slot Detection</h1>
       <form
         id="image-form"
-        action="/picker"
+        action="/select"
         method="post"
         enctype="multipart/form-data"
-        onsubmit="return validateFile('image')"
+        onsubmit="return validateImage('image')"
       >
         <div class="file-upload-wrapper">
           <input
@@ -34,7 +34,7 @@
         action="/detect"
         method="post"
         enctype="multipart/form-data"
-        onsubmit="return validateFile('video')"
+        onsubmit="return validateVideo('video')"
       >
         <div class="file-upload-wrapper">
           <input
